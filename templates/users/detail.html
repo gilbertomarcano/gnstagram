@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block container %}
+{% load static %}
     <div class="container mb-5" style='margin-top: 8em;'>
         <div class="row">
             <div class="col-sm-4 d-flex justify-content-center">
                 <img 
-                    src="{{ user.profile.picture.url }}" 
+                    src="{% if user.profile.picture %}{{ user.profile.picture.url }}{% else %}{% static 'img/default-profile.png' %}{% endif %}" 
                     alt="{{ user.username }}" 
                     class="rounded-circle" 
                     width="150px" 

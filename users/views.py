@@ -217,22 +217,22 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     queryset = User.objects.all()
     context_object_name = 'user'
 
-    def get(self, request, *args, **kwargs):
-        """
-        Handle errors.
-        """
+    # def get(self, request, *args, **kwargs):
+    #     """
+    #     Handle errors.
+    #     """
         
-        try:
-            self.object = self.get_object()
-            print('\n\nget get get\n\n')
-            print(request.user)
-            print('\n\nget get get\n\n')
-            # return reverse('users:detail', kwargs={'username': request.user})
-            return super().get(request, *args, **kwargs)
-        except:
-            # This handle 404 error for exaple
-            print('Value error value error')
-            return redirect('posts:feed')
+    #     try:
+    #         self.object = self.get_object()
+    #         print('\n\nget get get\n\n')
+    #         print(request.user)
+    #         print('\n\nget get get\n\n')
+    #         # return reverse('users:detail', kwargs={'username': request.user})
+    #         return super().get(request, *args, **kwargs)
+    #     except:
+    #         # This handle 404 error for exaple
+    #         print('Value error value error')
+    #         return redirect('posts:feed')
     
     def get_context_data(self, **kwargs):
         """

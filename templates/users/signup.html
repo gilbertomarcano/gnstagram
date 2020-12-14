@@ -1,0 +1,122 @@
+{% extends "users/base.html" %}
+
+{% block head_content %}
+<title>Platzigram sign up</title>
+{% endblock %}
+
+{% block container %}
+
+    {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+
+    <form action="{% url 'users:signup' %}" method="post">
+        {% csrf_token %}
+
+        <!-- {{ form.as_p }} -->
+        {# form.email and form.username errors come from forms.py #}
+        
+        <div class="form-group">
+            <input
+                type="text" 
+                placeholder="Username" 
+                name="username" 
+                required maxlength="50" 
+                minlength="4" 
+                required 
+                id="id_username"
+                value="{% if form.errors %}{{ form.username.value}}{% endif %}" 
+                class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+            >
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>   
+        </div>
+
+        <div class="form-group">
+            <input
+                type="password" 
+                placeholder="Password" 
+                name="password" minlength="8" 
+                required 
+                id="id_password"
+                class="form-control {% if form.non_field_errors %}is-invalid{% endif %}"
+            >
+        </div>
+
+        <div class="form-group">
+            <input 
+                type="password" 
+                placeholder="Password confirmation" 
+                name="password_confirmation" 
+                minlength="8" 
+                required 
+                id="id_password_confirmation"
+                class="form-control {% if form.non_field_errors %}is-invalid{% endif %}"
+            >
+
+            <div class="invalid-feedback">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="First name" 
+                name="first_name" 
+                maxlength="50" ´
+                minlength="2" 
+                required 
+                id="id_first_name"
+                value="{% if form.errors %}{{ form.first_name.value}}{% endif %}"
+            >   
+        </div>
+
+        <div class="form-group">
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Last name" 
+                name="last_name" 
+                axlength="50" 
+                minlength="2" 
+                required 
+                id="id_last_name"
+                value="{% if form.errors %}{{ form.last_name.value}}{% endif %}"
+            >   
+        </div>
+        
+        <div class="form-group">
+            <input 
+                type="email" 
+                placeholder="Email address" 
+                name="email" 
+                maxlength="70" 
+                minlength="6" 
+                required 
+                id="id_email"
+                value="{% if form.errors %}{{ form.email.value}}{% endif %}"
+                class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+            >
+            
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-block mt-5" type="submit">Register!</button>
+    </form>
+    
+
+    <p class="mt-4">Already register? <a href="{% url 'users:login' %}">Sign in here.</a></p>
+
+{% endblock %}

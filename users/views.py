@@ -133,12 +133,14 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
         username = self.object.user.username
         return reverse('users:detail', kwargs={'username': username})
 
-    def form_valid(self, form):
-        """
-        Save form data.
-        """
-        form.save()
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     """
+    #     Save form data.
+    #     """
+    #     print(form)
+    #     input('...')
+    #     form.save()
+    #     return super().form_valid(form)
 
     # def form_valid(self, form):
     #     data = self.get_form_kwargs()['data']

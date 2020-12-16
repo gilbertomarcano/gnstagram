@@ -36,7 +36,7 @@
                             type="file" 
                             name="photo" 
                             placeholder="photo" 
-                            class="form-control {% if form.photo.errors%}is-invalid{% endif %}"
+                            class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
                         >
                         <div class="invalid-feedback">
                             {% for error in form.photo.errors %}{{ error }}{% endfor %}

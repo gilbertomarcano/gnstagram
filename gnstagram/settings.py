@@ -25,8 +25,8 @@ SECRET_KEY = '&qxa&bkiww2400knfuw+#e599se(eup%x*%6s4s5nv!gq%8*&*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['gnstagram.herokuapp.com', '127.0.0.1']
-
+ALLOWED_HOSTS = ['gnstagram.herokuapp.com', '127.0.0.1', 'localhost']
+# 'gnstagram.herokuapp.com', '127.0.0.1'
 
 # Application definition
 
@@ -36,14 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
 
     'posts',
     'users',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'gnstagram.middleware.ProfileCompletionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'gnstagram.urls'
@@ -124,21 +127,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+# STATICFILES_DIRS = (BASE_DIR / 'static',)
 
-STATICFILES_DIRS = (
-    BASE_DIR / 'static',
-)
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_URL = '/media/'
 
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hix9oruhs',
+    'API_KEY': '862653536462484',
+    'API_SECRET': 'n4ILv4vj-QJCjq6d6vI-DAYr5e0',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

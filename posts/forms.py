@@ -21,24 +21,11 @@ class PostForm(forms.ModelForm):
         }
     )
 
-    def clean(self):
-        cleaned_data = super().clean()
-        print('===============')
-        print('===============')
-        print('===============')
-        print('===============')
-        print(cleaned_data)
-        print('===============')
-        print('===============')
-        print('===============')
-        print('===============')
-
-
     class Meta:
         """
         Form settings.
         """
         model = Post
-        fields = ('user', 'profile', 'title', 'photo') # Change to dict if works
+        fields = ('title', 'photo') # Change to dict if works
 
     

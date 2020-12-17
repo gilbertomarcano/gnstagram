@@ -52,19 +52,20 @@ from posts.forms import PostForm
 
 @login_required
 def create(request):
-    user = request.user
-    instance = get_object_or_404(Post, user=user)
-
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
+            form.profile = request.user.profile
             form.save()
             return redirect('posts:feed')
+            
     form = PostForm()
     return render(
         request,
         'posts/new.html',
-        {'form': form, 'user': request.user}
+        {'form': form, 'user': request.user, 'profile': request.user.profile}
     )
 
 

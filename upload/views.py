@@ -10,23 +10,18 @@ from posts.models import Post
 # Create your views here.
 @login_required
 def avatar_upload(request):
-    user = request.user
-    instance = UserProfile.objects.get(pk=1)
     if request.method == "POST":
-        # form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
         form = PostForm(request.POST, request.FILES)
-        print('Form is POST')
-        print(form)
         if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
+            form.profile = request.user.profile
             form.save()
             return redirect('posts:feed')
-        else:
-            print('Form invalid')
-    else:
-        form = PostForm()
-    
+        
+    form = PostForm()
     return render(
         request,
         'avatar_upload.html',
-        {'form': form}
+        {'form': form, 'user': request.user, 'profile': request.user.profile}
     )

@@ -12,7 +12,7 @@
                 This is the new form
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.photo }}
+                    {{ form }}
                     <input type="submit" value="Upload photo">
                 </form>
 

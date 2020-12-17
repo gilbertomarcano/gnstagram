@@ -1,6 +1,8 @@
-from cloudinary.forms import CloudinaryFileField
 from django import forms
+
 from upload.models import UserProfile
+
+from cloudinary.forms import CloudinaryFileField
 
 class AvatarUploadForm(forms.ModelForm):
     avatar = CloudinaryFileField(

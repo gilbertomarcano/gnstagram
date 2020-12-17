@@ -1,14 +1,12 @@
-from django.db import models
-
-from cloudinary.models import CloudinaryField
-
-# Create your models here.
-
 """ Post models. """
-
+# Django modules
 from django.db import models
 from django.contrib.auth.models import User
 
+# Cloudinary modules
+from cloudinary.models import CloudinaryField
+
+# Create your models here.
 class Post(models.Model):
     """
     Post model.

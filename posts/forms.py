@@ -1,20 +1,22 @@
 """
 Post forms.
 """
-
+# Django modules
 from django import forms
-from cloudinary.uploader import upload
-from cloudinary.forms import CloudinaryFileField
 
+# Apps modules
 from posts.models import Post
+
+# Cloudinary modules
+from cloudinary.forms import CloudinaryFileField
 
 class PostForm(forms.ModelForm):
     """
     Post model form.
     """
-
     photo = CloudinaryFileField(
         options = {
+            'crop': 'thumb',
             'folder': 'gnstagram'
         }
     )
@@ -24,5 +26,5 @@ class PostForm(forms.ModelForm):
         Form settings.
         """
         model = Post
-        fields = {'user', 'profile', 'title', 'photo'}
+        fields = ('user', 'profile', 'title', 'photo') # Change to dict if works
     

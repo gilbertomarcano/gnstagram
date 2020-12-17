@@ -9,12 +9,18 @@
         <div class="row justify-content-md-center">
             <div class="col-6 pt-3 pb-3" id="profile-box">
                 <h4 class="mb-4">Post a new photo!</h4>
+                This is the new form
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.photo }}
+                    <input type="submit" value="Upload photo">
+                </form>
+
+                <hr><hr><hr>
+
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <hr>
-                    {{ form.photo }}
-                    <hr>
-
+                    
                     <input type="hidden" name="user" value="{{ user.pk }}">
                     <input type="hidden" name="profile" value=" {{ profile.pk }}">
                     {# Title field #}

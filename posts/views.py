@@ -10,7 +10,6 @@ from posts.forms import PostForm
 from posts.models import Post
 
 # Create your views here.
-
 class PostDetailView(LoginRequiredMixin, DetailView):
     """
     Post detail view.
@@ -42,6 +41,31 @@ class PostsFeedView(LoginRequiredMixin, ListView):
 #     posts = Post.objects.all().order_by('-created')
 #     profile = request.user.profile
 #     return render(request, 'posts/feed.html', {'posts': posts, 'profile': profile})
+
+
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from posts.models import Post
+from posts.forms import PostForm
+
+@login_required
+def create(request):
+    # instance = get_object_or_404(Post, user=user)
+    
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:feed')
+    form = PostForm()
+    return render(
+        request,
+        'posts/new.html',
+        {'form': form, 'user': request.user}
+    )
+
 
 class CreatePostView(LoginRequiredMixin, CreateView):
     """

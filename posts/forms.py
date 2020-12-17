@@ -4,6 +4,7 @@ Post forms.
 
 from django import forms
 from cloudinary.uploader import upload
+from cloudinary.forms import CloudinaryFileField
 
 from posts.models import Post
 
@@ -11,6 +12,12 @@ class PostForm(forms.ModelForm):
     """
     Post model form.
     """
+
+    photo = CloudinaryFileField(
+        options = {
+            'folder': 'gnstagram'
+       }
+    )
 
     def clean(self):
         cleaned_data = super().clean()

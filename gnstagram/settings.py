@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&qxa&bkiww2400knfuw+#e599se(eup%x*%6s4s5nv!gq%8*&*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['gnstagram.herokuapp.com', '127.0.0.1', 'localhost']
 # 'gnstagram.herokuapp.com', '127.0.0.1'
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'posts',
     'users',
     'cloudinary',
+    
 ]
 
 MIDDLEWARE = [
@@ -149,5 +152,10 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'n4ILv4vj-QJCjq6d6vI-DAYr5e0',
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+cloudinary.config(
+    cloud_name = 'hix9oruhs',
+    api_key = '862653536462484',
+    api_secret = 'n4ILv4vj-QJCjq6d6vI-DAYr5e0'
+)
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

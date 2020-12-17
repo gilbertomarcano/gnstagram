@@ -110,12 +110,18 @@ class SignupView(FormView):
 #   It should have a Meta Class
 #       It should have model attribute
 #       It should have fields attribute with same model fields
+from cloudinary.forms import CloudinaryFileField
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     """
     Update profile view.
     """
 
     template_name = 'users/update.html'
+    picture = CloudinaryFileField(
+        options = {
+            'folder': 'gnstagram'
+       }
+    )
     model = Profile
     # fields = ['website', 'biography', 'phone_number', 'picture'] # ProfileForm
     form_class = ProfileForm

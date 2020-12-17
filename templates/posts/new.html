@@ -14,8 +14,7 @@
 
                     <input type="hidden" name="user" value="{{ user.pk }}">
                     <input type="hidden" name="profile" value=" {{ profile.pk }}">
-
-                    {# Website field #}
+                    {# Title field #}
                     <div class="form-group">
                         <input
                             type="text" 
@@ -30,13 +29,14 @@
                     </div>
                     
                     <br>
-                    {# Profile field #}
+                    {# Photo field #}
                     <div class="form-group">
                         <label>Chose your photo:</label>
                         <input 
                             type="file" 
                             name="photo" 
-                            placeholder="photo" 
+                            placeholder="photo"
+                            id="id_photo" 
                             class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
                         >
                         <div class="invalid-feedback">

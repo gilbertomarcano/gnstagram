@@ -59,6 +59,8 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
         context['profile'] = self.request.user.profile
+        context['backend_form'] = PostForm()
+        context['lmao'] = 'LMAAAAAO'
         return context
 
 # Create render without using a View class

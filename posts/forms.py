@@ -16,17 +16,8 @@ class PostForm(forms.ModelForm):
     photo = CloudinaryFileField(
         options = {
             'folder': 'gnstagram'
-       }
+        }
     )
-
-    def clean(self):
-        cleaned_data = super().clean()
-        print(cleaned_data)
-
-        # if 'title' in cleaned_data and 'photo' in cleaned_data:
-        #     print('UPLOADED CORRECTLY\n----------\n')
-        #     cloudinary.uploader.upload(cleaned_data['photo'])
-   
 
     class Meta:
         """
@@ -34,3 +25,4 @@ class PostForm(forms.ModelForm):
         """
         model = Post
         fields = {'user', 'profile', 'title', 'photo'}
+    

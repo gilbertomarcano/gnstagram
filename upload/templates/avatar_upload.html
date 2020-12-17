@@ -1,15 +1,25 @@
 
-<h1>Hello</h1>
-Post create
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-<input type="submit" value="Upload avatar">
+{% extends "base.html" %}
 
-Errors:
-{% if form.errors %}
-{{ form.errors }}
-{% endif %}
+{% block head_content %}
+<title>Create new post</title>
+{% endblock %}
+
+{% block container %}
+
+    <h1>Hello</h1>
+    Post create
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+    <input type="submit" value="Upload avatar">
+
+    Errors:
+    {% if form.errors %}
+    {{ form.errors }}
+    {% endif %}
+
+{% endblock %}
 
 <!-- </select></td></tr>
 <tr><th><label for="id_title">Title:</label></th><td><ul class="errorlist"><li>This field is required.</li></ul><input type="text" name="title" maxlength="255" required id="id_title"></td></tr>

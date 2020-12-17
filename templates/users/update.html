@@ -6,8 +6,8 @@
 
 {% block container %}
 <div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-6 p-4" id="profile-box">
+    <div class="row justify-content-md-center" style="justify-content: center!important;">
+        <div class="col-sm-6 p-4" id="profile-box">
             <form action="{% url 'users:update' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
@@ -28,7 +28,18 @@
 
                     <div class="media-body">
                         <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
-                        <p class="ml-4"><input type="file" name="picture"></p>
+                        <p class="ml-4">
+                            
+                        </p>
+                        <label for="file-upload" style="
+                        border: 1px solid #ccc;
+                        display: inline-block;
+                        padding: 6px 12px;
+                        cursor: pointer;">
+                            <i class="fa fa-cloud"></i> Picture
+                        </label>
+                        <input type="file" name="picture" id="file-upload" style="display: none;">
+
                     </div>
                 </div>
 
@@ -43,8 +54,6 @@
 
                 {# Website field #}
                 {{ form.biography.errors }}
-                <hr>
-           
                 <div class="form-group">
                     <label>Website</label>
                     <input

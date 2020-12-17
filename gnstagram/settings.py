@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&qxa&bkiww2400knfuw+#e599se(eup%x*%6s4s5nv!gq%8*&*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['gnstagram.herokuapp.com', '127.0.0.1', 'localhost']
 # 'gnstagram.herokuapp.com', '127.0.0.1'

@@ -3,10 +3,14 @@
 Post create
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.photo }}
+    {{ form }}
 <input type="submit" value="Upload avatar">
 
 Errors:
 {% if form.errors %}
 {{ form.errors }}
 {% endif %}
+
+<!-- </select></td></tr>
+<tr><th><label for="id_title">Title:</label></th><td><ul class="errorlist"><li>This field is required.</li></ul><input type="text" name="title" maxlength="255" required id="id_title"></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><input type="file" name="photo" required id="id_photo"></td></tr> -->

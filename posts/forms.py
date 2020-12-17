@@ -21,6 +21,19 @@ class PostForm(forms.ModelForm):
         }
     )
 
+    def clean(self):
+        cleaned_data = super().clean()
+        print('===============')
+        print('===============')
+        print('===============')
+        print('===============')
+        print(cleaned_data)
+        print('===============')
+        print('===============')
+        print('===============')
+        print('===============')
+
+
     class Meta:
         """
         Form settings.

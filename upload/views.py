@@ -14,10 +14,14 @@ def avatar_upload(request):
     instance = UserProfile.objects.get(pk=1)
     if request.method == "POST":
         # form = AvatarUploadForm(request.POST, request.FILES, instance=instance)
-        form = PostForm(request.POST, request.FILES, instance=instance)
+        form = PostForm(request.POST, request.FILES)
+        print('Form is POST')
+        print(form)
         if form.is_valid():
             form.save()
             return redirect('posts:feed')
+        else:
+            print('Form invalid')
     else:
         form = PostForm()
     

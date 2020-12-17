@@ -27,4 +27,5 @@ class PostForm(forms.ModelForm):
         """
         model = Post
         fields = ('user', 'profile', 'title', 'photo') # Change to dict if works
+
     

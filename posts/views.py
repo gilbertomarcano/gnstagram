@@ -52,8 +52,9 @@ from posts.forms import PostForm
 
 @login_required
 def create(request):
-    # instance = get_object_or_404(Post, user=user)
-    
+    user = request.user
+    instance = get_object_or_404(Post, user=user)
+
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():

@@ -5,3 +5,5 @@ Post create
     {% csrf_token %}
     {{ form.photo }}
 <input type="submit" value="Upload avatar">
+
+{% form.errors %}

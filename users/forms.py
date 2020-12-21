@@ -1,14 +1,85 @@
 """
 User forms.
 """
-
-from django.contrib.auth.models import User
-
 from django import forms
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
 
 from users.models import Profile
 
 # Profile Form is not longer required since we're using UpdateProfileView
+class UserForm(forms.ModelForm):
+
+    current_password = forms.CharField(widget=forms.PasswordInput(), required=False)
+    new_password = forms.CharField(widget=forms.PasswordInput(), required=False)
+    password_confirmation = forms.CharField(widget=forms.PasswordInput(), required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(UserForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        current_password = cleaned_data['current_password'] if 'current_password' in cleaned_data else 'error'
+        new_password = cleaned_data['new_password'] if 'new_password' in cleaned_data else ''
+        password_confirmation = cleaned_data['password_confirmation'] if 'password_confirmation' in cleaned_data else ''
+
+        if new_password and new_password == password_confirmation and not current_password:
+            raise forms.ValidationError('Current password is missing')
+        elif current_password and new_password and new_password == password_confirmation:
+            user = self.request.user
+            user.set_password(new_password)
+            user.save()
+    
+    def clean_username(self):
+        """
+        Username must be unique.
+        """
+        username = self.cleaned_data['username']
+
+        if username != self.request.user.username:
+            username_taken = User.objects.filter(username=username).exists()
+            if username_taken:
+                raise forms.ValidationError('Username is already in use.')
+        return username
+            
+    def clean_current_password(self):
+        """
+        Validates the current password form.
+        """
+        current_password = self.cleaned_data['current_password']
+        if current_password and not check_password(current_password, self.request.user.password):
+            raise forms.ValidationError('Current password is incorrect')
+        return current_password
+    
+    def clean_new_password(self):
+        """
+        Validates if the new password is valid.
+        """
+        new_password = self.cleaned_data['new_password']
+        if new_password:
+            validate_password(new_password)
+        return new_password
+    
+    def clean_password_confirmation(self):
+        """
+        Validates if the password confirmation matches.
+        """
+        password_confirmation = self.cleaned_data['password_confirmation']
+        print(password_confirmation)
+        new_password = self.cleaned_data['new_password'] if 'new_password' in self.cleaned_data else ''
+        if new_password != password_confirmation:
+            raise forms.ValidationError('Passwords do not match.')
+        return password_confirmation
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
+        # widgets = {
+        #     'password': forms.PasswordInput(),
+        # }
+
 class ProfileForm(forms.ModelForm):
     """
     Profile form.
@@ -49,7 +120,7 @@ class SignupForm(forms.Form):
         if username_taken:
             raise forms.ValidationError('Username is already in use.')
         return username
-    
+
     def clean_email(self):
         """
         Email must be unique.

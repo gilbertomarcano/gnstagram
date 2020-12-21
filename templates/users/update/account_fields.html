@@ -1,0 +1,160 @@
+
+
+{# Website field #}
+<!-- {{ form.biography.errors }}
+{{ user.email }}
+<div class="form-group">
+    <label>Password</label>
+    <input
+        type="password" 
+        name="old_password" 
+        placeholder="Current password" 
+        value=""
+        class="form-control"
+    >
+    <div class="invalid-feedback">
+        {% for error in form %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div> -->
+<!-- {{ form }} -->
+
+<div class="form-group">
+    <label for="id_username">Username:</label>
+    <input
+        type="text"
+        name="username"
+        value="{{ user.username }}"
+        maxlength="150"
+        required id="id_username"
+        class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+    >
+    <div class="invalid-feedback">
+        {% for error in form.errors.username %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+<hr>
+
+<div class="form-group d-inline-block detail-user-first-name">
+    <label for="id_first_name">First name:</label>
+    <input
+        type="text"
+        name="first_name"
+        value="{{ user.first_name }}"
+        maxlength="150"
+        id="id_first_name"
+        class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+        style="display: inline;"
+    >
+    <div class="invalid-feedback">
+        {% for error in form.errors.first_name %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="form-group d-inline-block detail-user-last-name">
+    <label for="id_last_name" style="display: inline-block;">Last name:</label>
+    <input
+        type="text"
+        name="last_name"
+        value="{{ user.last_name }}"
+        maxlength="150"
+        id="id_last_name"
+        class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+        style="display: inline;"
+    >
+    <div class="invalid-feedback">
+        {% for error in form.errors.last_name %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+<br><br>
+
+<div class="form-group">
+    <label for="id_email">Email address:</label>
+    <input
+        type="email"
+        name="email"
+        value="{{ user.email }}"
+        maxlength="254"
+        id="id_email"
+        class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+    >
+    <div class="invalid-feedback">
+        {% for error in form.errors.email %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+<br>
+
+<div class="form-group">
+    <label for="id_current_password">Current password:</label>
+    <input
+        type="password"
+        name="current_password"
+        id="id_current_password"
+        class="form-control {% if form.current_password.errors %}is-invalid{% endif %}"
+    >
+    <div class="invalid-feedback">
+        {% for error in form.errors.current_password %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+<br>
+
+<div class="form-group">
+    <label for="id_new_password">New password:</label>
+    <input
+        type="password"
+        name="new_password"
+        id="id_new_password"
+        class="form-control {% if form.new_password.errors %}is-invalid{% endif %}"
+    >
+    <div class="invalid-feedback">
+        {% for error in form.errors.new_password %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+<br>
+
+<div class="form-group">
+    <label for="id_password_confirmation">Password confirmation:</label>
+    <input
+        type="password"
+        name="password_confirmation"
+        id="id_password_confirmation"
+        class="form-control {% if form.password_confirmation.errors %}is-invalid{% endif %}"
+    >
+    <div class="invalid-feedback">
+        {% for error in form.errors.password_confirmation %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+
+{# Email field #}
+<!-- <div class="form-group">
+    <label>Email</label>
+    <input
+        type="email" 
+        name="email"
+        maxlength="254"
+        id="id_email"
+        placeholder="Email" 
+        value="{{ user.email }}"
+        class="form-control {% if form.website.errors %}is-invalid{% endif %}"
+    >
+    <div class="invalid-feedback">
+        {% for error in form %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div> -->

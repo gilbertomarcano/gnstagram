@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>@{{ request.user.username }} | Update profile</title>
+{% endblock %}
+
+{% block container %}
+<div class="container">
+    <div class="row justify-content-md-center" style="justify-content: center!important;">
+        <div class="col-sm-6 p-4" id="profile-box">
+            <form action="{% url 'users:update_profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {% include "users/update/user_info.html" %}
+
+                {% include "users/update/profile_fields.html" %}
+
+                <button type="submit" class="btn btn-primary btn-block mt-5">Update info</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

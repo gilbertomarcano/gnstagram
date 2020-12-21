@@ -1,0 +1,22 @@
+{% load static %}
+<div class="row mb-2">
+    <div class="d-flex justify-content-center edit-profile-picture">
+            {% if user.profile.picture %}
+            <img 
+                src="{{ user.profile.picture.url }}" 
+                class="rounded-circle" 
+                height="90"
+                width="90"
+                style="object-fit: cover;"
+            >
+            {% else %}
+                <img src="{% static 'img/default-profile.png' %}" class="rounded-circle" height="90">
+            {% endif %}
+    </div>
+    <div class="edit-profile-detail-container">
+        <div class="my-auto">
+            <h4 class="edit-profile-username">@{{ user.username }}</h4>
+            <span class="edit-profile-username">{{ user.get_full_name }}</span>
+        </div>
+    </div>
+</div>

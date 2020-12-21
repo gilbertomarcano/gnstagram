@@ -42,3 +42,95 @@ html, body {
 #user-posts #post-thumb {
     background: #fff;
 }
+
+.edit-profile-detail-container {
+}
+
+.user-detail-div {
+    margin-top: auto!important;
+    margin-bottom: auto!important;
+    float: none;
+}
+
+.edit-profile-username {
+    display: flex;
+    justify-content: center;
+}
+
+.detail-profile-flex-item {
+    display: inline;
+    width: auto;
+    
+}
+
+.detail-profile-btns {
+    width: auto;        
+}
+
+.detail-user-first-name {
+    width: 49%
+}
+
+.detail-user-last-name {
+    width: 50%
+}
+
+@media (max-width: 1200px) {
+    .detail-user-first-name {
+        width: 49%;
+    }
+
+    .detail-user-last-name {
+        width: 49.5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-user-first-name {
+        width: 48%;
+    }
+
+    .detail-user-last-name {
+        width: 48%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-sm-8-center-item {
+        display: flex;
+        justify-content: center;
+    }
+
+    .detail-profile-flex-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .edit-profile-picture {
+        flex: 0 0 auto;
+        width: 20%;
+        margin-left: 1.4rem;
+        margin-right: 0.4rem;
+    }
+    
+    .edit-profile-username {
+        flex: 0 0 auto;
+        width: 100%;
+        display: block;
+    }
+
+    .user-detail-div {
+        margin-top: auto!important;
+        margin-bottom: auto!important;
+        float: none;
+    }
+
+    .edit-profile-detail-container {
+        flex: 0 0 auto;
+        display: flex!important;
+        width: 66.6666666667%;
+    }
+}

@@ -36,6 +36,10 @@ class User(AbstractUser):
     @property
     def posts_count(self):
         return self.post_set.count()
+    
+    @property
+    def comments_count(self):
+        return self.comment_set.count()
 
     # created = models.DateTimeField(auto_now_add=True)
     # modified = models.DateTimeField(auto_now=True)

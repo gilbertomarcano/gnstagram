@@ -6,6 +6,7 @@ from comments import views
 
 urlpatterns = [
     # Managment
-    path(route='create', view=views.CreateCommentView.as_view(), name='create_comment'),
+    path(route='create', view=views.create, name='create_comment'),
+    path(route='<slug:pk>', view=views.CommentDetailView.as_view(), name='detail_view')
 ]
 

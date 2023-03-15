@@ -1,14 +1,35 @@
-<!-- TODO: Testing -->
-<div class="form-group">
-    <textarea
-        name="biography" 
-        placeholder="Say something here..."
-        class="form-control {% if form.biography.errors %}is-invalid{% endif %}">{% if form.errors %}{{ form.biography.value}}{% else %}{% endif %}</textarea>
+{% load cloudinary %}
 
-    <div class="invalid-feedback">
-        {% for error in form.biography.errors %}
-            {{ error }}
-        {% endfor %}
+<div class="col-sm-12 col-md-8 offset-md-2 mt-3 p-0 post-container">
+    <div class="media pt-3 pl-3 pb-1 ml-4" style="padding-left: 1rem; padding-right: 1rem">
+        <div class="d-inline">
+            <a href="{% url 'users:detail' comment.user.username %}">
+                <img 
+                    src="{{ comment.user.picture.url }}"
+                    alt="{{ comment.user.username }}" 
+                    class="mr-3 rounded-circle" 
+                    height="35"
+                    width="35"
+                    style="object-fit: cover;"
+                >
+            </a>
+        </div>
+        <div class="d-inline media-body">
+            <a href="{% url 'users:detail' comment.user.id %}" style='color: inherit; text-decoration: none;'>
+                <p class="d-inline-block mb-1">{{ comment.user.username }}</p>
+            </a>
+            <div class="bg-light p-2 mt-2" style="max-width: 100%;">
+                <p class="mb-0"><b>{{ comment.text }}</b></p>
+            </div>
+            <small class="text-muted font-italic mt-2">{{ comment.created }}</small>
+        </div>
+        </a>
+        <div class="d-flex align-items-center justify-content-end">
+            <p class="mt-1 ml-2 mb-0" style="margin-right: 1rem;">
+                <a href="" style="color: #000; font-size: 20px">
+                    <i class="far fa-heart pl-2 pt-2"></i>
+                </a>
+            </p>
+        </div>
     </div>
 </div>
-<!-- TODO: End Testing -->

@@ -16,6 +16,6 @@ class CommentForm(forms.ModelForm):
         Form settings.
         """
         model = Comment
-        fields = ('user', 'posts', 'text')  # Change to dict if works
+        fields = ('user', 'post', 'text')  # Change to dict if works
 
     

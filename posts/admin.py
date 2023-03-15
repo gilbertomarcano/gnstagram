@@ -10,4 +10,4 @@ class PostAdmin(admin.ModelAdmin):
     """
     Post admin
     """
-    list_display = ('pk', 'user', 'profile', 'title', 'photo', 'created', 'modified')
+    list_display = ('pk', 'user', 'title', 'photo', 'created', 'modified')

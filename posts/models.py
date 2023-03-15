@@ -1,10 +1,11 @@
 """ Post models. """
 # Django modules
 from django.db import models
-from django.contrib.auth.models import User
 
 # Cloudinary modules
 from cloudinary.models import CloudinaryField
+
+from users.models import User
 
 # Create your models here.
 class Post(models.Model):
@@ -12,7 +13,6 @@ class Post(models.Model):
     Post model.
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey('users.Profile', on_delete=models.CASCADE)
 
     title = models.CharField(max_length=255)
     photo = CloudinaryField('image')

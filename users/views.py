@@ -4,17 +4,18 @@ User views.
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
 from django.contrib.auth import views as auth_views
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.db.utils import IntegrityError
 from django.views.generic import DetailView, FormView, UpdateView
+from django.contrib.auth import get_user_model
 
 from posts.models import Post
 from users import forms, models
 
 
+User = get_user_model()
 # Create your views here.
 class LoginView(auth_views.LoginView):
     """
@@ -51,14 +52,15 @@ class SignupView(FormView):
         form.save()
         return super().form_valid(form)
 
-# ProfileForm is not required with this UpdateView if we use fields attribute
+# UserForm is not required with this UpdateView if we use fields attribute
 # Using fields attribute means that it depends on model (no validation)
 # Using form_class attribute means that it has its own validation
 #   It should inheritet from forms.ModelForm
 #   It should have a Meta Class
 #       It should have model attribute
 #       It should have fields attribute with same model fields
-from cloudinary.forms import CloudinaryFileField
+
+
 class UpdateUserView(LoginRequiredMixin, UpdateView):
     """
     View for updating an user, with a response rendered by a template.
@@ -70,7 +72,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     # Defined because generic detail view UpdateUserView must be called with either an object pk or a slug in the URLconf.
     def get_object(self):
         """
-        Return user's profile.
+        Return user.
         """
         return self.request.user # This is the object to be updated (?)
 
@@ -84,36 +86,14 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     
     # Add request to form's kwargs using a class-based view
     def get_form_kwargs(self):
+        print('hello aaaa')
         kwargs = super(UpdateUserView, self).get_form_kwargs()
-        kwargs.update({'request': self.request})
+        # kwargs.update({'request': self.request})
         return kwargs
 
-class UpdateProfileView(LoginRequiredMixin, UpdateView):
-    """
-    View for updating a profile, with a response rendered by a template.
-    """
-    template_name = 'users/update/profile.html'
-    picture = CloudinaryFileField(
-        options = {
-            'folder': 'gnstagram'
-       }
-    )
-    model = models.Profile
-    form_class = forms.ProfileForm
 
-    # Defined because generic detail view UpdateUserView must be called with either an object pk or a slug in the URLconf.
-    def get_object(self):
-        """
-        Return user's profile.
-        """
-        return self.request.user.profile
-
-    def get_success_url(self):
-        """
-        Return to user's profile
-        """
-        username = self.object.user.username
-        return reverse('users:detail', kwargs={'username': username})
+class UpdateAccountView(LoginRequiredMixin, UpdateView):
+    pass
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):

@@ -11,8 +11,8 @@ urlpatterns = [
     # Managment
     path(route='login/', view=views.LoginView.as_view(), name='login'),
     path(route='logout/', view=views.LogoutView.as_view(), name='logout'),
-    path(route='edit/profile/', view=views.UpdateProfileView.as_view(), name='update_profile'),
-    path(route='edit/account/', view=views.UpdateUserView.as_view(), name='update_account'),
+    path(route='edit/profile/', view=views.UpdateUserView.as_view(), name='update_user'),
+    path(route='edit/account/', view=views.UpdateAccountView.as_view(), name='update_account'),
     path(route='signup/', view=views.SignupView.as_view(), name='signup'),
 
     # Posts

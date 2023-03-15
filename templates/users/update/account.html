@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row justify-content-md-center" style="justify-content: center!important;">
         <div class="col-sm-6 p-4" id="profile-box">
-            <form action="{% url 'users:update_account' %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'users:update_user' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 
                 {% include "users/update/user_info.html" %}

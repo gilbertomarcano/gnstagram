@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 
-from users.models import Profile
+from users.models import User
 
 # Profile Form is not longer required since we're using UpdateProfileView
 class UserForm(forms.ModelForm):
@@ -80,19 +80,19 @@ class UserForm(forms.ModelForm):
         #     'password': forms.PasswordInput(),
         # }
 
-class ProfileForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
     """
-    Profile form.
+    User form.
     """
     
     website = forms.URLField(max_length=200, required=False)
     biography = forms.CharField(max_length=500, required=True)
     phone_number = forms.CharField(max_length=20, required=False)
-    picture = forms.ImageField()
+    # picture = forms.ImageField()
 
     class Meta:
-        model = Profile
-        fields = ['website', 'biography', 'phone_number', 'picture']
+        model = User
+        fields = ['website', 'biography', 'phone_number']
         
 
 class SignupForm(forms.Form):
@@ -153,5 +153,3 @@ class SignupForm(forms.Form):
         data.pop('password_confirmation')
 
         user = User.objects.create_user(**data)
-        profile = Profile(user=user)
-        profile.save()

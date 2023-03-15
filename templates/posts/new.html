@@ -13,14 +13,13 @@
                     {% csrf_token %}
                     
                     <input type="hidden" name="user" value="{{ user.pk }}">
-                    <input type="hidden" name="profile" value=" {{ profile.pk }}">
                     {# Title field #}
                     <div class="form-group">
                         <input
                             type="text" 
                             name="title" 
                             placeholder="Title" 
-                            value="{% if form.errors %}{{ form.title.value }}{% else %}{{ profile.title }}{% endif %}"
+                            value="{% if form.errors %}{{ form.title.value }}{% else %}{{ user.title }}{% endif %}"
                             class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                         >
                         <div class="invalid-feedback">

@@ -65,7 +65,7 @@ def create(request):
     return render(
         request,
         'posts/new.html',
-        {'form': form, 'user': request.user, 'profile': request.user.profile}
+        {'form': form, 'user': request.user}
     )
 
 

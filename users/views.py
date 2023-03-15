@@ -13,6 +13,7 @@ from django.contrib.auth import get_user_model
 
 from posts.models import Post
 from users import forms, models
+from cloudinary.forms import CloudinaryFileField
 
 
 User = get_user_model()
@@ -61,7 +62,7 @@ class SignupView(FormView):
 #       It should have fields attribute with same model fields
 
 
-class UpdateUserView(LoginRequiredMixin, UpdateView):
+class UpdateAccountView(LoginRequiredMixin, UpdateView):
     """
     View for updating an user, with a response rendered by a template.
     """
@@ -90,6 +91,34 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
         kwargs = super(UpdateUserView, self).get_form_kwargs()
         # kwargs.update({'request': self.request})
         return kwargs
+
+
+class UpdateUserView(LoginRequiredMixin, UpdateView):
+    """
+    View for updating a profile, with a response rendered by a template.
+    """
+    template_name = 'users/update/profile.html'
+    picture = CloudinaryFileField(
+        options = {
+            'folder': 'gnstagram'
+       }
+    )
+    model = models.User
+    form_class = forms.UserForm
+
+    # Defined because generic detail view UpdateUserView must be called with either an object pk or a slug in the URLconf.
+    def get_object(self):
+        """
+        Return user's profile.
+        """
+        return self.request.user
+
+    def get_success_url(self):
+        """
+        Return to user's profile
+        """
+        username = self.object.username
+        return reverse('users:detail', kwargs={'username': username})
 
 
 class UpdateAccountView(LoginRequiredMixin, UpdateView):

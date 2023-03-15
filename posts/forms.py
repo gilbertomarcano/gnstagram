@@ -17,7 +17,7 @@ class PostForm(forms.ModelForm):
     photo = CloudinaryFileField(
         options = {
             'crop': 'thumb',
-            'folder': 'gnstagram'
+            'folder': 'gnstagram/posts'
         }
     )
 

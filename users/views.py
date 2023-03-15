@@ -79,7 +79,7 @@ class UpdateAccountView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         """
-        Return to user's profile.
+        Return to user.
         """
         username = self.object.username
         update_session_auth_hash(self.request, self.object)  # Important!
@@ -87,9 +87,9 @@ class UpdateAccountView(LoginRequiredMixin, UpdateView):
     
     # Add request to form's kwargs using a class-based view
     def get_form_kwargs(self):
-        print('hello aaaa')
+        print('update account???')
         kwargs = super(UpdateUserView, self).get_form_kwargs()
-        # kwargs.update({'request': self.request})
+        kwargs.update({'request': self.request})
         return kwargs
 
 
@@ -109,7 +109,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     # Defined because generic detail view UpdateUserView must be called with either an object pk or a slug in the URLconf.
     def get_object(self):
         """
-        Return user's profile.
+        Return user.
         """
         return self.request.user
 
@@ -117,7 +117,12 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
         """
         Return to user's profile
         """
+        print('update user???')
         username = self.object.username
+        print(self)
+        print(self.object)
+        print(self.object.picture)
+
         return reverse('users:detail', kwargs={'username': username})
 
 

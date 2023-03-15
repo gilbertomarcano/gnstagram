@@ -6,7 +6,7 @@
         </p>
     </div>
 </div>
-{% if not profile.picture %}
+{% if not user.picture %}
     {% for error in form.picture.errors%}
         <div class="alert alert-danger">
             <b>Picture: </b>{{ error }}
@@ -22,7 +22,7 @@
         type="url" 
         name="website" 
         placeholder="Website" 
-        value="{% if form.errors %}{{ form.website.value}}{% else %}{{ profile.website }}{% endif %}"
+        value="{% if form.errors %}{{ form.website.value}}{% else %}{{ user.website }}{% endif %}"
         class="form-control {% if form.website.errors %}is-invalid{% endif %}"
     >
     <div class="invalid-feedback">
@@ -35,10 +35,10 @@
 
 {# Biography field #}
 <div class="form-group">
-    <label>Biography</label>
+    <label>Biographyx</label>
     <textarea
         name="biography" 
-        class="form-control {% if form.biography.errors %}is-invalid{% endif %}">{% if form.errors %}{{ form.biography.value}}{% else %}{{ profile.biography }}{% endif %}</textarea>
+        class="form-control {% if form.biography.errors %}is-invalid{% endif %}">{% if form.errors %}{{ form.biography.value}}{% else %}{{ user.biography }}{% endif %}</textarea>
 
     <div class="invalid-feedback">
         {% for error in form.biography.errors %}
@@ -55,7 +55,7 @@
         type="text" 
         name="phone_number" 
         placeholder="Phone number" 
-        value="{% if form.errors %}{{ form.phone_number.value}}{% else %}{{ profile.phone_number }}{% endif %}" 
+        value="{% if form.errors %}{{ form.phone_number.value}}{% else %}{{ user.phone_number }}{% endif %}" 
         class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}"
     >
     <div class="invalid-feedback">

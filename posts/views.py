@@ -50,6 +50,10 @@ from django.shortcuts import redirect
 from posts.models import Post
 from posts.forms import PostForm
 
+# Create render without using a View class
+# ###########################
+#   OLD CREATE              #
+#############################
 @login_required
 def create(request):
     if request.method == "POST":

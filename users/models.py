@@ -33,6 +33,14 @@ class User(AbstractUser):
     website = models.CharField(max_length=64, blank=True)
     biography = models.CharField(max_length=64, blank=True)
 
+    @property
+    def posts_count(self):
+        return self.post_set.count()
+    
+    @property
+    def comments_count(self):
+        return self.comment_set.count()
+
     # created = models.DateTimeField(auto_now_add=True)
     # modified = models.DateTimeField(auto_now=True)
     # class Meta(AbstractUser.Meta):

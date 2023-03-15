@@ -1,0 +1,14 @@
+<!-- TODO: Testing -->
+<div class="form-group">
+    <textarea
+        name="text" 
+        placeholder="Say something here..."
+        class="form-control {% if form.biography.errors %}is-invalid{% endif %}">{% if form.errors %}{{ form.biography.value}}{% else %}{% endif %}</textarea>
+
+    <div class="invalid-feedback">
+        {% for error in form.biography.errors %}
+            {{ error }}
+        {% endfor %}
+    </div>
+</div>
+<!-- TODO: End Testing -->

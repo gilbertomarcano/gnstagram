@@ -2,10 +2,10 @@
 <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
     <div class="media pt-3 pl-3 pb-1 ml-4" style="padding-left: 1rem">
         <div class="d-inline">
-            <a href="{% url 'users:detail' post.user.username %}">
+            <a href="{% url 'users:detail' comment.user.username %}">
                 <img 
-                    src="{{ post.user.picture.url }}"
-                    alt="{{ post.user.username }}" 
+                    src="{{ comment.user.picture.url }}"
+                    alt="{{ comment.user.get_full_name }}" 
                     class="mr-3 rounded-circle" 
                     height="35"
                     width="35"
@@ -14,15 +14,11 @@
             </a>
         </div>
         <div class="d-inline media-body">
-            <a href="{% url 'users:detail' post.user %}" style='color: inherit; text-decoration: none;'>
-                <p class="d-inline-block" style="margin-top: 5px; ">{{ post.user.username }}</p>
+            <a href="{% url 'users:detail' comment.user %}" style='color: inherit; text-decoration: none;'>
+                <p class="d-inline-block" style="margin-top: 5px; ">{{ comment.user.get_full_name }}</p>
             </a>
         </div>
     </div>
-
-    <a href="{% url 'posts:detail' post.pk %}">
-        <img src="{{ post.photo.url }}" alt="{{ post.title }}" style="width: 100%;">
-    </a>
 
     <p class="mt-1 ml-2" style="margin-left: 1rem;">
         <a href="" style="color: #000; font-size: 20px">
@@ -31,8 +27,7 @@
     </p>
 
     <p class="ml-2 mt-0 mb-2" style="margin-left: 1rem;" >
-        <b>{{ post.title }}</b><br>
-        <small class="text-muted font-italic mt-2">{{ post.created }}</small>
+        <b>{{ comment.text }}</b> - <small>{{ post.created }}</small>
     </p>
 </div>
 

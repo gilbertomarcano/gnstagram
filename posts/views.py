@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from posts.forms import PostForm
 
 from posts.models import Post
+from comments.models import Comment
 
 # Create your views here.
 class PostDetailView(LoginRequiredMixin, DetailView):
@@ -18,6 +19,11 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     template_name = 'posts/detail.html'
     queryset = Post.objects.all()
     context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comment_set.all().order_by('-created')
+        return context
 
 class PostsFeedView(LoginRequiredMixin, ListView):
     """
@@ -50,6 +56,10 @@ from django.shortcuts import redirect
 from posts.models import Post
 from posts.forms import PostForm
 
+# Create render without using a View class
+# ###########################
+#   OLD CREATE              #
+#############################
 @login_required
 def create(request):
     if request.method == "POST":

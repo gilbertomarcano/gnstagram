@@ -57,7 +57,6 @@ def create(request):
         if form.is_valid():
             form = form.save(commit=False)
             form.user = request.user
-            form.profile = request.user.profile
             form.save()
             return redirect('posts:feed')
             
@@ -84,7 +83,6 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         """
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
-        context['profile'] = self.request.user.profile
         context['backend_form'] = PostForm()
         context['lmao'] = 'LMAAAAAO'
         return context

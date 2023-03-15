@@ -4,7 +4,7 @@
         <div class="d-inline">
             <a href="{% url 'users:detail' post.user.username %}">
                 <img 
-                    src="{{ post.user.profile.picture.url }}"
+                    src="{{ post.user.picture.url }}"
                     alt="{{ post.user.get_full_name }}" 
                     class="mr-3 rounded-circle" 
                     height="35"
@@ -14,7 +14,7 @@
             </a>
         </div>
         <div class="d-inline media-body">
-            <a href="{% url 'users:detail' post.profile %}" style='color: inherit; text-decoration: none;'>
+            <a href="{% url 'users:detail' post.user %}" style='color: inherit; text-decoration: none;'>
                 <p class="d-inline-block" style="margin-top: 5px; ">{{ post.user.get_full_name }}</p>
             </a>
         </div>

@@ -13,7 +13,7 @@
                 <li class="nav-item">
                     <a href="{% url 'users:detail' request.user.username %}">
                         <img 
-                            src="{% if user.profile.picture %}{{ user.profile.picture.url }}{% else %}{% static 'img/default-profile.png' %}{% endif %}"
+                            src="{% if user.picture %}{{ user.picture.url }}{% else %}{% static 'img/default-profile.png' %}{% endif %}"
                             class="d-inline-block align-top rounded-circle"
                             width="35" 
                             height="35"

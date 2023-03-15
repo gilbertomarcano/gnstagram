@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'posts',
     'users',
     'cloudinary',
-    
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -151,15 +150,20 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hix9oruhs',
-    'API_KEY': '862653536462484',
-    'API_SECRET': 'n4ILv4vj-QJCjq6d6vI-DAYr5e0',
+    'CLOUD_NAME': 'dawhiswv5',
+    'API_KEY': '521599568365532',
+    'API_SECRET': 'hWLVhcpqDvaiSXilwGZG72JHPTE',
 }
 
 cloudinary.config(
-    cloud_name = 'hix9oruhs',
-    api_key = '862653536462484',
-    api_secret = 'n4ILv4vj-QJCjq6d6vI-DAYr5e0'
+    cloud_name = "dawhiswv5",
+    api_key = "521599568365532",
+    api_secret = "hWLVhcpqDvaiSXilwGZG72JHPTE",
+    secure = True
 )
 
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# from cloudinary.uploader import upload
+# upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg", public_id="olympic_flag")

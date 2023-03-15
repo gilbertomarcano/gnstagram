@@ -1,9 +1,9 @@
 {% load static %}
 <div class="row mb-2">
     <div class="d-flex justify-content-center edit-profile-picture">
-            {% if user.profile.picture %}
+            {% if user.picture %}
             <img 
-                src="{{ user.profile.picture.url }}" 
+                src="{{ user.picture.url }}" 
                 class="rounded-circle" 
                 height="90"
                 width="90"
